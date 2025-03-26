@@ -39,3 +39,4 @@ Initial part of the whole power-trading-system
 - logging: use logging of exceptional events, to integrate in the quant models
 
 ## architectural details
+https://medium.com/data-science/assembling-an-entry-level-high-frequency-trading-hft-system-e7538545b2a9
