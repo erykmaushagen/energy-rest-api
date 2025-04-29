@@ -1,0 +1,44 @@
+********************* RAG-Pipeline *********************
+
+********************* Prompt *********************
+"
+mein ziel ist es einen chatbot zu entwickeln mit dem man nachhaltig investieren kann und mit dem eben ein investor investieren kann basiernd auf nachhaltigkeits kriterien. Das bedeutet der User gitb eine pormpt ein bspw. " ich will in den JFK airport investieren, mein wichtigstes Kriterium ist die nachhalitgkeit" demnach wird aus diesem prompt das framework gestartet bspw. durch lang chain (das habe ich über bavest erhaltne dass das framwork exitsiret) . Durch das  LLM will ich also versuche eine gewisse Abstraciton der Aufgabe zu erhalten in dem ich mit APIs komjunizerien, wie bspw.  Google Earth Engine oder Refintiiv REST API 2. Der erweiterte tech stack sieht also so aus so aus das man embeded models nutzt. Daher eine numerische Darstellung von Dokuemten bzw. Daten, sodass ich diese effizient aufrufen kann. Daher wichtig für den Retrieval-Teil, daher relevante Informatioenn aus großen Domumenten datenbanken zu erhalten. 3. Vector basierte datenbanken. Dadurch erhalte ich Zugriff und speichere diese daten. 4. Fincaal data, bspw. weiterhin die Refintion REST APi oder Earth Engine API zu nutzen um relevante daten zuerhalten. 5. frontend: nutze ein framework, wie angular ode react, sodas man mit dem user ineragiert und eine analyse bereit gestellt bekommt. 6. backend: fastAPI baut eine API mit dem frontend, sodass man mti der RAG-pipeline interagieren und managen kann. 7. Deployment das projekt so verarbeiten, dass sie potenziell auch auf einer Cloud laufen können. 8. Data processing: Apache Spark or similar for processing large data sets when real-time or batch processing of financial data is required.
+<<<<< mein Endziel ist es also: der User gibt ein, er möchte in den JFK airport investieren möglichst nachhaltig. Daher gibt der User den prompt ein. Der informationsprozess startet also. Durch das LLM können wie also unsere untersuchte Fraegstellung genua herunterbrechen, daher wir greifen auf ein datenset aus der Google earth api zu werten die sateliten bilder bspw. aus. so kann man die anzahl an fougzeuge zählen und als grpah ploten. Zudem werden aus der REfintiv api der ESG-Datenreport analysiert, sodass daraus erkennbar ist ob die gesellschaft des JFK tatsächlich nachhaltig ist oder nicht. Dem User wird demnach der Informationsprozess geschildert und relevante Daten werden angezeigt
+"
+‍********************* Systmarchitektur *********************
+                +---------------------------+
+                |    User Prompt            |
+                | "Ich will in JFK ..."     |
+                +------------+--------------+
+                             ↓
+                +------------v-------------+
+                |  LangChain Orchestrator  |  (LLM + Tools + Chains)
+                +------------+-------------+
+                             ↓
+         +------------------+--------------------+
+         |   Task Parsing & Prompt Engineering   | ← PromptTemplate
+         +------------------+--------------------+
+                             ↓
+    +---------+-----------+------------+--------------+
+    | Google Earth Engine | Refinitiv API | ESG Data  | ← Tools
+    +---------------------+--------------+------------+
+                             ↓
+                   +---------v----------+
+                   |   Vector DB (RAG)  | ← FAISS, Chroma
+                   +---------+----------+
+                             ↓
+                   +---------v----------+
+                   |    Analysis Chain  | ← LLMChain + Retrieval
+                   +---------+----------+
+                             ↓
+                   +---------v----------+
+                   | Structured Output  | ← OutputParser
+                   +---------+----------+
+                             ↓
+                    +--------v--------+
+                    |  FastAPI Backend |
+                    +--------+--------+
+                             ↓
+                     +-------v--------+
+                     |    React UI    |
+                     +----------------+
