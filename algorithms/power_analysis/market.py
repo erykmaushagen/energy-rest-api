@@ -20,21 +20,37 @@ from typing import List
 # )
 
 class Market(): 
+    """
+    class for market information.
+    
+    Attributes:
+        id: 
+            String of ID e.g. "EPEX_DE"
+        name: 
+            Optional describing name "EPEX Spot Germany"
+        country_coverage:
+            Optional list of countries the market covers e.g. ["DE"]
+        products:
+            Optional prducts exhcange trades e.g. ["day-ahead", "intraday"]
+        resolution: 
+            Data resolution e.g. "15min"
+        coupled:
+            Optional bool if coupled or not
+        negative_prices. 
+            Optional bool if market allows negative prices
+        auction_times: 
+            Optional list of times for auctions ["12:00", "13:00"] 
+        
+    """
     def __init__(self, id: str, country_coverge: List[str], products: List[str], 
-                  resolution: str,  coupled: bool, allows_negative_prices: bool, auction_times: List[str] ) -> None:
+                  resolution: str,  coupled: bool, negative_prices: bool, auction_times: List[str] ) -> None:
         self.id = id
         self.country_coverage= country_coverge
         self.products = products       # z. B. ["day-ahead", "intraday"]
         self.resolution = resolution          # z. B. "15min", "1h"
         self.coupled = coupled
-        self.allows_negative_prices = allows_negative_prices
+        self.negative_prices = negative_prices
         self.auction_times = auction_times
-
-
-
-
-
-
     
     def description(self) -> None: 
         print(Market.country)
