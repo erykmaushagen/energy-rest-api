@@ -6,3 +6,7 @@
 
 # Logs
 *.log
+
+# virtual env
+venv/
+
