@@ -1,12 +1,12 @@
+
 import pandas as pd 
 import matplotlib.pyplot as plt
 import datetime
 import os 
 
+def fetch_data(path):
 
-def fetch_data():
-
-    df = pd.read_csv("dataset/Elspotprices_2015_2024.csv", sep=';', skip_blank_lines=True)
+    df = pd.read_csv(path, sep=';', skip_blank_lines=True)
 
     df['SpotPriceDKK'] = df['SpotPriceDKK'].str.replace(',', '.').astype(float)
     df['SpotPriceEUR'] = df['SpotPriceEUR'].str.replace(',', '.').astype(float)
@@ -38,7 +38,8 @@ def plot_data(start_date, end_date, df):
     plt.close()  # Schließen des Plots
 
 if __name__ == "__main__":
-    df_unfiltered = fetch_data()
+    path = "dataset/Elspotprices_2015_2024.csv"
+    df_unfiltered = fetch_data(path)
     plot_data('2023-02-22 22:00:00', '2023-07-22 22:00:00', df_unfiltered)
 
     # plt.plot(market_df['SpotPriceDKK'])

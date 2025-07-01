@@ -9,3 +9,10 @@
 
 Kaggle Dataset:
 [🔗](https://www.kaggle.com/datasets/pythonafroz/electricity-day-ahead-spot-prices-data/data)
+
+Nordpool Link: 
+[🔗](https://data.nordpoolgroup.com/auction/day-ahead/prices?deliveryDate=latest&currency=EUR&aggregation=DeliveryPeriod&deliveryAreas=FR)
+
+### Algorithms 
+- um using Bayesian Kelly as an self-learning algorithm for power trading 
+- research is based on: [🔗](https://medium.com/@jlevi.nyc/bayesian-kelly-a-self-learning-algorithm-for-power-trading-2e4d7bf8dad6)
