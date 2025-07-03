@@ -1,10 +1,8 @@
 
 from typing import List
 import pandas as pd
-
-
 from datetime import datetime
-
+from market import Market
 
 class MarketPriceRecord:
     """
@@ -39,7 +37,8 @@ class MarketPriceData:
         records:
             list of MarketPriceRecords extracted out of an input dataframe
     """
-    def __init__(self, records: List[MarketPriceRecord] = None):
+    def __init__(self, market: Market, records: List[MarketPriceRecord] = None):
+        self.market = market
         self.records = records or []
     
     # currently specified in the kaggle dataset from a .csv file, loop up the README.md for more information
@@ -51,7 +50,7 @@ class MarketPriceData:
             df: datafram with rows: "HourUTC", "HourDK", "PriceArea", "SpotPriceDKK",  "SpotPriceEUR"
         """
         self.records = []
-        for row in df.iterrows:
+        for index, row in df.iterrows():
             rec = MarketPriceRecord(
                 hour_utc=row["HourUTC"],
                 price_area=row["PriceArea"],
@@ -66,15 +65,23 @@ class MarketPriceData:
 
         Args: 
             String with short definition of price area e.g. "CWE" ~ Central Western Europe
-        Returns:
-            List of MarketPriceRecords of specific prize area
         """
         return [row for row in self.records if row.price_area == area]
+    
+    def filter_by_date(self, start_date: datetime, end_date: datetime) -> List[MarketPriceRecord]:
+        """
+        filter by timeframe
+        
+        Args: 
+            startdate and enddate in datetime format
+        """
+        return [row for row in self.records if start_date <= row.hour_utc <= end_date]
 
     
     def to_dataframe(self) -> pd.DataFrame: 
         """
         processes List of MarketPriceRecords into 
+
         Returns: 
             Pandas Dataframe with columns "HourUTC", "PriceArea", "SpotPriceEUR"
         """

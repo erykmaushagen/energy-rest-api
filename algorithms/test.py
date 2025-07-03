@@ -2,6 +2,7 @@
 import pandas as pd 
 import matplotlib.pyplot as plt
 import datetime
+from power_analysis.data import MarketPriceData
 import os 
 
 def fetch_data(path):
@@ -38,12 +39,15 @@ def plot_data(start_date, end_date, df_unfiltered):
     plt.close()  # Schließen des Plots
 
 if __name__ == "__main__":
-    path = "dataset/Elspotprices_2015_2024.csv"
+    path = "data/Elspotprices_2015_2024.csv"
     df_unfiltered = fetch_data(path)
-    plot_data('2023-02-22 22:00:00', '2023-07-22 22:00:00', df_unfiltered)
+    # plot_data('2023-02-22 22:00:00', '2023-07-22 22:00:00', df_unfiltered)
+    data = MarketPriceData()
+    data.from_dataframe(df_unfiltered)
 
-    # plt.plot(market_df['SpotPriceDKK'])
-    # plt.show()
+
+
+    
 
 
 
