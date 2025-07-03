@@ -2,7 +2,7 @@
 from typing import List
 import pandas as pd
 from datetime import datetime
-from market import Market
+from power_analysis.market import Market
 
 class MarketPriceRecord:
     """
@@ -37,7 +37,7 @@ class MarketPriceData:
         records:
             list of MarketPriceRecords extracted out of an input dataframe
     """
-    def __init__(self, market: Market, records: List[MarketPriceRecord] = None):
+    def __init__(self, market: Market=None, records: List[MarketPriceRecord] = None):
         self.market = market
         self.records = records or []
     
@@ -59,6 +59,21 @@ class MarketPriceData:
             self.records.append(rec)
         return self.records
     
+    def to_dataframe(self) -> pd.DataFrame: 
+        """
+        processes List of MarketPriceRecords into 
+
+        Returns: 
+            Pandas Dataframe with columns "HourUTC", "PriceArea", "SpotPriceEUR"
+        """
+        data = { 
+            "HourUTC": [row.hour_utc for row in self.records],
+            "PriceArea": [row.price_area for row in self.records],
+            "SpotPriceEUR": [row.spot_price_eur for row in self.records]
+        }
+
+        return pd.DataFrame(data)
+    
     def filter_by_area(self, area: str) -> List[MarketPriceRecord]:
         """
         filters List of MarketPriceRecords into 
@@ -76,23 +91,7 @@ class MarketPriceData:
             startdate and enddate in datetime format
         """
         return [row for row in self.records if start_date <= row.hour_utc <= end_date]
-
     
-    def to_dataframe(self) -> pd.DataFrame: 
-        """
-        processes List of MarketPriceRecords into 
-
-        Returns: 
-            Pandas Dataframe with columns "HourUTC", "PriceArea", "SpotPriceEUR"
-        """
-        data = { 
-            "HourUTC": [row.hour_utc for row in self.records],
-            "PriceArea": [row.price_area for row in self.records],
-            "SpotPriceEUR": [row.spot_price_eur for row in self.records]
-        }
-
-        return pd.DataFrame(data)
-
 # import pandas as pd
 
 # # pandas DataFrame aus CSV oder anderen Quellen laden

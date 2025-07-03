@@ -1,8 +1,10 @@
 
 import pandas as pd 
 import matplotlib.pyplot as plt
+import plotly.express as px
 import datetime
 from power_analysis.data import MarketPriceData
+from power_analysis.visualization import DataVisualizer
 import os 
 
 def fetch_data(path):
@@ -42,8 +44,9 @@ if __name__ == "__main__":
     path = "data/Elspotprices_2015_2024.csv"
     df_unfiltered = fetch_data(path)
     # plot_data('2023-02-22 22:00:00', '2023-07-22 22:00:00', df_unfiltered)
-    data = MarketPriceData()
-    data.from_dataframe(df_unfiltered)
+    print(df_unfiltered.tail())
+    # visualizer  = DataVisualizer(df_unfiltered)
+    # visualizer.line_plot()
 
 
 

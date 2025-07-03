@@ -21,7 +21,6 @@ class Market:
             Optional bool if market allows negative prices
         auction_times: 
             Optional list of times for auctions ["12:00", "13:00"] 
-        
     """
     def __init__(
         self, 
