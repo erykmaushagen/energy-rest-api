@@ -19,10 +19,10 @@ def fetch_data(path):
     # print(df.dtypes)
     return market_df
 
-def plot_data(start_date, end_date, df):
+def plot_data(start_date, end_date, df_unfiltered):
     # Konvertiere die HourDK-Spalte in Datetime
     
-    print(start_date, end_date, df_unfiltered)
+    print(df_unfiltered.head())
     # Erstellen des Plots
     df = df_unfiltered[(df_unfiltered['HourUTC'] > start_date) & (df_unfiltered['HourUTC'] < end_date)]
     plt.figure(figsize=(10, 5))  # Größe des Plots

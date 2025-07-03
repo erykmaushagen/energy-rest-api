@@ -2,7 +2,7 @@
 from typing import List, Optional
 
 
-class Market(): 
+class Market: 
     """
     class for market information.
     
@@ -23,8 +23,6 @@ class Market():
             Optional list of times for auctions ["12:00", "13:00"] 
         
     """
-
-class Market():
     def __init__(
         self, 
         id: str,
