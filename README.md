@@ -1,4 +1,7 @@
 # energy-rest-api
+## run
+`pip install -r requrements.txt`
+
 Initial part of the whole power-trading-system
 ## over of microservice like archtiecture
 <figure style="display: flex; gap: 20px; align-items: center; justify-content: center; margin: 0 auto;">
