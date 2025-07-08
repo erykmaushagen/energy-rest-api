@@ -1,0 +1,43 @@
+.container {
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #6c63ff;
+  text-shadow: 2px 2px #c3c3ff;
+  animation: glow 2s infinite alternate;
+}
+
+.counter {
+  font-size: 2em;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+button {
+  background: linear-gradient(45deg, #6c63ff, #ff6b6b);
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #6c63ff;
+  }
+  to {
+    text-shadow: 0 0 20px #ff6b6b, 0 0 30px #6c63ff;
+  }
+}

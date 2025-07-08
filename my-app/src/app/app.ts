@@ -8,5 +8,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'my-app';
+  counter = 0;
+
+  increment() {
+    this.counter++;
+  }
 }
