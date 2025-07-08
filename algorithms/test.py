@@ -16,11 +16,11 @@ def fetch_data(path):
     df['HourDK'] = pd.to_datetime(df['HourDK'])
     df['HourUTC'] = pd.to_datetime(df['HourUTC'])
 
-    market_df = df[df['PriceArea'] == 'DK1']
+    # market_df = df[df['PriceArea'] == 'DK1']
 
     # print(market_df.head())
     # print(df.dtypes)
-    return market_df
+    return df
 
 def plot_data(start_date, end_date, df_unfiltered):
     # Konvertiere die HourDK-Spalte in Datetime
@@ -44,10 +44,16 @@ if __name__ == "__main__":
     path = "data/Elspotprices_2015_2024.csv"
     df_unfiltered = fetch_data(path)
     # plot_data('2023-02-22 22:00:00', '2023-07-22 22:00:00', df_unfiltered)
-    print(df_unfiltered.tail())
+    # print(df_unfiltered.tail())
     # visualizer  = DataVisualizer(df_unfiltered)
-    # visualizer.line_plot()
-
+    # # visualizer.line_plot()
+    # visualizer.heat_map()
+    data_element = MarketPriceData()
+    data_element.from_dataframe(df_unfiltered)
+    data_element.filter_by_date("2015-06-25 22:00:00", "2023-06-25 22:00:00")
+    df = data_element.to_dataframe()
+    visualize = DataVisualizer(df)
+    visualize.heat_map()
 
 
     

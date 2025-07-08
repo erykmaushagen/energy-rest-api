@@ -21,7 +21,7 @@ class MarketPriceRecord:
             price_area: str,  
             spot_price_eur: float
         ):
-        self.hour_utc = hour_utc
+        self.hour_utc = pd.to_datetime(hour_utc)
         self.price_area = price_area
         self.spot_price_eur = spot_price_eur
 
@@ -53,8 +53,8 @@ class MarketPriceData:
         for index, row in df.iterrows():
             rec = MarketPriceRecord(
                 hour_utc=row["HourUTC"],
-                price_area=row["PriceArea"],
-                spot_price_eur=["SpotPriceEUR"]
+                price_area=str(row["PriceArea"]),
+                spot_price_eur=float(row["SpotPriceEUR"])
             )
             self.records.append(rec)
         return self.records
@@ -74,34 +74,22 @@ class MarketPriceData:
 
         return pd.DataFrame(data)
     
-    def filter_by_area(self, area: str) -> List[MarketPriceRecord]:
+    def filter_by_area(self, area: str) -> None:
         """
         filters List of MarketPriceRecords into 
 
         Args: 
             String with short definition of price area e.g. "CWE" ~ Central Western Europe
         """
-        return [row for row in self.records if row.price_area == area]
+        self.records = [row for row in self.records if row.price_area == area]
     
-    def filter_by_date(self, start_date: datetime, end_date: datetime) -> List[MarketPriceRecord]:
+    def filter_by_date(self, start_date: datetime, end_date: datetime) -> None:
         """
         filter by timeframe
         
         Args: 
             startdate and enddate in datetime format
         """
-        return [row for row in self.records if start_date <= row.hour_utc <= end_date]
-    
-# import pandas as pd
-
-# # pandas DataFrame aus CSV oder anderen Quellen laden
-# df = pd.read_csv("marktpreise.csv", parse_dates=["HourUTC", "HourDK"])
-
-# # MarketPriceData Objekt erzeugen
-# mpd = MarketPriceData.from_dataframe(df)
-
-# # Beispiel: alle Records für "DK1"
-# dk1_records = mpd.filter_by_area("DK1")
-
-# # zurück zu DataFrame konvertieren, z.B. für Plotly
-# df_dk1 = MarketPriceData(dk1_records).to_dataframe()
+        start_date = pd.to_datetime(start_date)
+        end_date = pd.to_datetime(end_date)
+        self.records = [row for row in self.records if start_date <= row.hour_utc <= end_date]
