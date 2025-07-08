@@ -10,3 +10,6 @@
 # virtual env
 venv/
 
+# python - cache fiels
+*.pyc
+*.pyo
